@@ -1,0 +1,47 @@
+create table companias (
+	idCompania int(11) UNSIGNED not null auto_increment,
+	nombre varchar(100) not null,
+	logo LONGBLOB not null,
+	PRIMARY key (idCompania)
+);
+
+create table destinos (
+	idDestino int(11) UNSIGNED not null auto_increment,
+	nombre varchar(100) not null,
+	PRIMARY key (idDestino)
+);
+
+create table puertas (
+	idPuerta int(11) UNSIGNED not null auto_increment,
+	nombre varchar(100) not null,
+	PRIMARY KEY (idPuerta)
+);
+
+create table estados (
+	idEstado int(11) UNSIGNED not null auto_increment,
+	estado varchar(100) UNSIGNED not null,
+	cancelado TINYINT(1) DEFAULT 1, /*CANCELADO = 0 - NO CANCELADO = 1*/
+	hora TIMESTAMP
+	PRIMARY KEY (idEstado)
+);
+
+create table vuelos (
+	idVuelo int(11) UNSIGNED not null auto_increment,
+	idCompania int(11) UNSIGNED not null,
+	idDestino int(11) UNSIGNED not null,
+	idPuerta int(11) UNSIGNED not null,
+	hora
+	informacion VARCHAR(100) UNSIGNED not null,
+	PRIMARY KEY (idVuelo),
+	CONSTRAINT vuelos_fk1 FOREIGN KEY (idCompania) REFERENCES companias (idCompania) on delete cascade on update cascade,
+	CONSTRAINT vuelos_fk2 FOREIGN KEY (idDestino) REFERENCES destinos (idVuelo) on delete cascade on update cascade,
+	CONSTRAINT vuelos_fk3 FOREIGN KEY (idPuerta) REFERENCES destinos (idPuerta) on delete cascade on update cascade
+);
+
+create table estado_vuelos (
+	idVuelo int(11) unsigned not null,
+	idEstado int(11) UNSIGNED not null,
+	CONSTRAINT estado_vuelos_fk1 FOREIGN key (idVuelo) REFERENCES vuelos (idVuelo) on delete cascade on update cascade,
+	CONSTRAINT estado_vuelos_fk2 FOREIGN KEY (idEstado) REFERENCES vuelos (idEstado) on delete cascade on update cascade
+);
+
