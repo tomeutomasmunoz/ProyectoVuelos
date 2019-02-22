@@ -5,7 +5,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
 
-    socket *server = new socket(3345);
+    socket *server = new socket(3346);
     QObject::connect(server, &socket::closed, &app, &QCoreApplication::quit);
 
     return app.exec();
