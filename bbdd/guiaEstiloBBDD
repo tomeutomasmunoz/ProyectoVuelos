@@ -1,0 +1,17 @@
+Tablas:
+
+- Plural
+- minúsculas
+- Si hay varias palabras los espacios se vuelven "_" (Ej: estados_vuelos)
+
+Campos:
+
+- Definir id:
+
+Primero la palabra "id" y luego el nombre de la tabla en singular (Ej: idDestino)
+
+Campos foráneos:
+
+- Siempre el nombre del campo en la otra tabla.
+
+Si en la tabla destinos tenemos (idDestino) en la otra poner (idDestino).
