@@ -8,11 +8,12 @@ class Vuelo
 {
 public:
     Vuelo();
-    /*hora*/
-    QString compania;
-    int num_vuelo;
-    QString destino;
-    QString puerta;
+    int idVuelo;
+    int idCompania;
+    int idDestino;
+    int idPuerta;
+    /*hora (?)*/
+    QString info;
 
 };
 
