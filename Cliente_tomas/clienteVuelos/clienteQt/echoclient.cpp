@@ -6,7 +6,7 @@
 EchoClient::EchoClient(const QUrl &url, bool debug, QObject *parent) :
     QObject(parent),
     m_url(url),
-    m_debug(debug)
+    m_debug(debug) // Boolean?
 {
     if (m_debug)
         qDebug() << "Servidor de WebSocket:" << url;
