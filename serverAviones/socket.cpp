@@ -4,16 +4,20 @@
 #include <QtCore/QDebug>
 
 
-socket::socket(quint16 port) :
+socket::socket(quint16 port, bool debug) :
     m_pWebSocketServer(new QWebSocketServer(QStringLiteral("Test Server"),
-                                            QWebSocketServer::NonSecureMode, this))
+                                            QWebSocketServer::NonSecureMode, this)),
+    m_debug(debug)
+
 {
-    if (m_pWebSocketServer->listen(QHostAddress::Any, port))
-    {
-        qDebug() << "Server iniciado en puerto:" << port;
-        connect(m_pWebSocketServer, &QWebSocketServer::newConnection, this, &socket::onNewConnection);
-        connect(m_pWebSocketServer, &QWebSocketServer::closed, this, &socket::closed);
-    } // end if
+    if (m_pWebSocketServer->listen(QHostAddress::Any, port)) {
+
+            if (m_debug)
+                qDebug() << "Server iniciado en puerto" << port;
+            connect(m_pWebSocketServer, &QWebSocketServer::newConnection,
+                    this, &socket::onNewConnection);
+            connect(m_pWebSocketServer, &QWebSocketServer::closed, this, &socket::closed);
+        }
 }
 
 
@@ -29,6 +33,8 @@ void socket::onNewConnection()
     QWebSocket *pSocket = m_pWebSocketServer->nextPendingConnection();
 
     qDebug() << "Socket conectado:" << pSocket;
+
+
 
     connect(pSocket, &QWebSocket::textMessageReceived, this, &socket::processTextMessage);
     connect(pSocket, &QWebSocket::disconnected, this, &socket::socketDisconnected);
