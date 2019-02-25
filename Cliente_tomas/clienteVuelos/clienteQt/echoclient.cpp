@@ -3,7 +3,7 @@
 #include <QObject>
 #include <QDebug>
 
-EchoClient::EchoClient(const QUrl &url, bool debug, QObject *parent) :
+/*EchoClient::EchoClient(const QUrl &url, bool debug, QObject *parent) :
     QObject(parent),
     m_url(url),
     m_debug(debug) // Boolean?
@@ -22,4 +22,4 @@ void EchoClient::onConnected()
     connect(&m_webSocket, &QWebSocket::textMessageReceived,
             this, &EchoClient::onTextMessageReceived);
     m_webSocket.sendTextMessage(QStringLiteral("Prueba de conexión"));
-}
+}*/
