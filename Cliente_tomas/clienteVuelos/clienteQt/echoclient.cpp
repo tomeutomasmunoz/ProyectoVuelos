@@ -9,7 +9,7 @@ EchoClient::EchoClient(const QUrl &url, bool debug, QObject *parent) :
     m_debug(debug)
 {
     if (m_debug)
-        qDebug() << "WebSocket server:" << url;
+        qDebug() << "Servidor de WebSocket:" << url;
     connect(&m_webSocket, &QWebSocket::connected, this, &EchoClient::onConnected);
     connect(&m_webSocket, &QWebSocket::disconnected, this, &EchoClient::closed);
     m_webSocket.open(QUrl(url));
@@ -18,8 +18,8 @@ EchoClient::EchoClient(const QUrl &url, bool debug, QObject *parent) :
 void EchoClient::onConnected()
 {
     if (m_debug)
-        qDebug() << "WebSocket connected";
+        qDebug() << "- Estas Conectado -";
     connect(&m_webSocket, &QWebSocket::textMessageReceived,
             this, &EchoClient::onTextMessageReceived);
-    m_webSocket.sendTextMessage(QStringLiteral("Hello, world!"));
+    m_webSocket.sendTextMessage(QStringLiteral("Prueba de conexión"));
 }
