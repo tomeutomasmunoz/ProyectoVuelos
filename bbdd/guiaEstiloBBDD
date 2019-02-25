@@ -10,8 +10,17 @@ Campos:
 
 Primero la palabra "id" y luego el nombre de la tabla en singular (Ej: idDestino)
 
+-Demás campos:
+
+primero el nombre del campo seguido del nombre de la tabla con la primera letra en mayúscula. (Ej: nombreDestino).
+
 Campos foráneos:
 
-- Siempre el nombre del campo en la otra tabla.
+- Siempre el nombre del campo igual que aparece escrito en la otra tabla.
 
 Si en la tabla destinos tenemos (idDestino) en la otra poner (idDestino).
+
+Foreign keys:
+
+Los nombres de estas al referenciarlas serán siembre nombreDeLaTabla_fk seguido del numero de foreign key que es segun el orden de adición. (Ej: vuelos_fk1, vuelos_fk2);
+

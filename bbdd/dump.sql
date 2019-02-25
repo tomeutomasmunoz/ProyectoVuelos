@@ -15,6 +15,20 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET row_security = off;
 
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -25,9 +39,9 @@ SET default_with_oids = false;
 
 CREATE TABLE public.companias (
     "idCompania" integer NOT NULL,
-    nombre character varying(100) NOT NULL,
-    "nombreLogo" integer NOT NULL,
-    "uuidLogo" uuid NOT NULL
+    "nombreCompania" character varying(100) NOT NULL,
+    "nombreLogoCompania" integer NOT NULL,
+    "uuidLogoCompania" uuid NOT NULL
 );
 
 
@@ -74,7 +88,7 @@ ALTER TABLE public."companias_nombreLogo_seq" OWNER TO usuario;
 -- Name: companias_nombreLogo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: usuario
 --
 
-ALTER SEQUENCE public."companias_nombreLogo_seq" OWNED BY public.companias."nombreLogo";
+ALTER SEQUENCE public."companias_nombreLogo_seq" OWNED BY public.companias."nombreLogoCompania";
 
 
 --
@@ -83,7 +97,7 @@ ALTER SEQUENCE public."companias_nombreLogo_seq" OWNED BY public.companias."nomb
 
 CREATE TABLE public.destinos (
     "idDestino" integer NOT NULL,
-    nombre character varying(100) NOT NULL
+    "nombreDestino" character varying(100) NOT NULL
 );
 
 
@@ -117,8 +131,8 @@ ALTER SEQUENCE public."destinos_idDestino_seq" OWNED BY public.destinos."idDesti
 
 CREATE TABLE public.estados (
     "idEstado" integer NOT NULL,
-    estado character varying(255) NOT NULL,
-    hora time(6) without time zone NOT NULL,
+    "estadoEstado" character varying(255) NOT NULL,
+    "horaEstado" time(6) without time zone NOT NULL,
     cancelado boolean DEFAULT false NOT NULL
 );
 
@@ -172,8 +186,8 @@ ALTER TABLE public.estados_vuelos OWNER TO usuario;
 
 CREATE TABLE public.puertas (
     "idPuerta" integer NOT NULL,
-    letra character varying(100) NOT NULL,
-    numero integer NOT NULL
+    "letraPuerta" character varying(100) NOT NULL,
+    "numeroPuerta" integer NOT NULL
 );
 
 
@@ -210,18 +224,18 @@ CREATE TABLE public.vuelos (
     "idCompania" integer NOT NULL,
     "idDestino" integer NOT NULL,
     "idPuerta" integer NOT NULL,
-    hora time(6) without time zone NOT NULL,
-    informacion character varying(100) NOT NULL
+    "horaVuelo" time(6) without time zone NOT NULL,
+    "informacionVuelo" character varying(100) NOT NULL
 );
 
 
 ALTER TABLE public.vuelos OWNER TO usuario;
 
 --
--- Name: COLUMN vuelos.informacion; Type: COMMENT; Schema: public; Owner: usuario
+-- Name: COLUMN vuelos."informacionVuelo"; Type: COMMENT; Schema: public; Owner: usuario
 --
 
-COMMENT ON COLUMN public.vuelos.informacion IS 'SALIDAS/LLEGADAS';
+COMMENT ON COLUMN public.vuelos."informacionVuelo" IS 'SALIDAS/LLEGADAS';
 
 
 --
@@ -254,10 +268,10 @@ ALTER TABLE ONLY public.companias ALTER COLUMN "idCompania" SET DEFAULT nextval(
 
 
 --
--- Name: companias nombreLogo; Type: DEFAULT; Schema: public; Owner: usuario
+-- Name: companias nombreLogoCompania; Type: DEFAULT; Schema: public; Owner: usuario
 --
 
-ALTER TABLE ONLY public.companias ALTER COLUMN "nombreLogo" SET DEFAULT nextval('public."companias_nombreLogo_seq"'::regclass);
+ALTER TABLE ONLY public.companias ALTER COLUMN "nombreLogoCompania" SET DEFAULT nextval('public."companias_nombreLogo_seq"'::regclass);
 
 
 --
@@ -404,6 +418,46 @@ ALTER TABLE ONLY public.puertas
 
 ALTER TABLE ONLY public.vuelos
     ADD CONSTRAINT vuelos_pkey PRIMARY KEY ("idVuelo");
+
+
+--
+-- Name: estados_vuelos estados_vuelos_fk1; Type: FK CONSTRAINT; Schema: public; Owner: usuario
+--
+
+ALTER TABLE ONLY public.estados_vuelos
+    ADD CONSTRAINT estados_vuelos_fk1 FOREIGN KEY ("idVuelo") REFERENCES public.vuelos("idVuelo") ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: estados_vuelos estados_vuelos_fk2; Type: FK CONSTRAINT; Schema: public; Owner: usuario
+--
+
+ALTER TABLE ONLY public.estados_vuelos
+    ADD CONSTRAINT estados_vuelos_fk2 FOREIGN KEY ("idEstado") REFERENCES public.estados("idEstado") ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: vuelos vuelos_fk1; Type: FK CONSTRAINT; Schema: public; Owner: usuario
+--
+
+ALTER TABLE ONLY public.vuelos
+    ADD CONSTRAINT vuelos_fk1 FOREIGN KEY ("idCompania") REFERENCES public.companias("idCompania") ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: vuelos vuelos_fk2; Type: FK CONSTRAINT; Schema: public; Owner: usuario
+--
+
+ALTER TABLE ONLY public.vuelos
+    ADD CONSTRAINT vuelos_fk2 FOREIGN KEY ("idDestino") REFERENCES public.destinos("idDestino") ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: vuelos vuelos_fk3; Type: FK CONSTRAINT; Schema: public; Owner: usuario
+--
+
+ALTER TABLE ONLY public.vuelos
+    ADD CONSTRAINT vuelos_fk3 FOREIGN KEY ("idPuerta") REFERENCES public.puertas("idPuerta") ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
