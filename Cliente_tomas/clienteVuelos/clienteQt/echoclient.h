@@ -6,6 +6,7 @@ class EchoClient
 {
 public:
     EchoClient();
+    void onConnected();
 };
 
 #endif // ECHOCLIENT_H
