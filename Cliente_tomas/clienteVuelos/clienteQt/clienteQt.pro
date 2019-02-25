@@ -28,13 +28,11 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    vuelo.cpp \
-    echoclient.cpp
+    vuelo.cpp
 
 HEADERS += \
         mainwindow.h \
-    vuelo.h \
-    echoclient.h
+    vuelo.h
 
 FORMS += \
         mainwindow.ui

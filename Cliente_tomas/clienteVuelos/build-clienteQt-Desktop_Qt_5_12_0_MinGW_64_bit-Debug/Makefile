@@ -232,6 +232,8 @@ Makefile: ../clienteQt/clienteQt.pro ../../../../Qt/5.12.0/mingw73_64/mkspecs/wi
 		../clienteQt/clienteQt.pro \
 		../../../../Qt/5.12.0/mingw73_64/lib/Qt5Widgets.prl \
 		../../../../Qt/5.12.0/mingw73_64/lib/Qt5Gui.prl \
+		../../../../Qt/5.12.0/mingw73_64/lib/Qt5WebSockets.prl \
+		../../../../Qt/5.12.0/mingw73_64/lib/Qt5Network.prl \
 		../../../../Qt/5.12.0/mingw73_64/lib/Qt5Core.prl \
 		../../../../Qt/5.12.0/mingw73_64/lib/qtmaind.prl
 	$(QMAKE) -o Makefile ..\clienteQt\clienteQt.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -406,6 +408,8 @@ Makefile: ../clienteQt/clienteQt.pro ../../../../Qt/5.12.0/mingw73_64/mkspecs/wi
 ../clienteQt/clienteQt.pro:
 ../../../../Qt/5.12.0/mingw73_64/lib/Qt5Widgets.prl:
 ../../../../Qt/5.12.0/mingw73_64/lib/Qt5Gui.prl:
+../../../../Qt/5.12.0/mingw73_64/lib/Qt5WebSockets.prl:
+../../../../Qt/5.12.0/mingw73_64/lib/Qt5Network.prl:
 ../../../../Qt/5.12.0/mingw73_64/lib/Qt5Core.prl:
 ../../../../Qt/5.12.0/mingw73_64/lib/qtmaind.prl:
 qmake: FORCE

@@ -22,4 +22,4 @@ void EchoClient::onConnected()
     connect(&m_webSocket, &QWebSocket::textMessageReceived,
             this, &EchoClient::onTextMessageReceived);
     m_webSocket.sendTextMessage(QStringLiteral("Prueba de conexión"));
-}*/
+}
