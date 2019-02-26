@@ -22,6 +22,8 @@ void MainWindow::Conectar(){
     // Iniciar WebSocket
 
     socket = new QTcpSocket(this);
+
+    // Poner IP y PUERTO
     socket->connectToHost("google.com", 80);
 
     if(socket->waitForConnected(3000)){
