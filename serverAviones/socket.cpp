@@ -18,7 +18,7 @@ socket::socket() :
 
 
     quint16 port=  leerConf(":\configuracion").toUShort();
-    qDebug()<<port;
+
     if (m_pWebSocketServer->listen(QHostAddress::Any, port))
     {
         qDebug() << "Server iniciado en puerto:" << port;
@@ -67,6 +67,7 @@ QString socket::leerConf(QString archivo)
         QString defecto = "1234";
 
         return defecto;
+        inputFile.close();
 
     }
     }
