@@ -24,7 +24,7 @@ private slots:
     void onNewConnection();
     void processTextMessage(QString message);
     void socketDisconnected();
-    QStringList leerConf(QString archivo);
+    QString leerConf(QString archivo);
 private:
     QWebSocketServer *m_pWebSocketServer;
     QList<QWebSocket *> m_clients;

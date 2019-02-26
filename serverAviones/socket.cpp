@@ -4,6 +4,7 @@
 #include <QtCore/QDebug>
 #include <iostream>
 #include <fstream>
+#include <QFile>
 
 
 
@@ -15,8 +16,8 @@ socket::socket() :
 
 {
 
-    QStringList lista = leerConf("configuracion.txt");
-    quint16 port=  lista.at(1).toUShort();
+
+    quint16 port=  leerConf(":\configuracion").toUShort();
     qDebug()<<port;
     if (m_pWebSocketServer->listen(QHostAddress::Any, port))
     {
@@ -33,25 +34,44 @@ socket::~socket()
     qDeleteAll(m_clients.begin(), m_clients.end());
 }
 
-QStringList socket::leerConf(QString archivo)
+QString socket::leerConf(QString archivo)
 {
-    QStringList list;
-    std::ifstream conf;
-    std::string linea;
-    conf.open(archivo.toStdString().c_str());
-    if(!conf.is_open())
+    QFile inputFile(archivo);
+
+    if(!inputFile.exists())
     {
-    while(std::getline(conf,linea))
+    qDebug() << "no se ha encontrado el archivo";
+    }
+    else{
+
+
+    if (inputFile.open(QIODevice::ReadOnly))
     {
-        list.append(linea.c_str());
+        QTextStream in(&inputFile);
+        while (!in.atEnd())
+        {
+         QString busqueda("port:");
+         QString line = in.readLine();
+
+         int pos = line.indexOf(busqueda);
+         if (line.contains(busqueda))
+         {
+             QString resto = line.mid ( pos + busqueda.length());
+             return resto;
+             inputFile.close();
+         }
+
+
+
+        }
+        QString defecto = "1234";
+
+        return defecto;
 
     }
     }
-
-    return list;
-
-
 }
+
 
 
 void socket::onNewConnection()

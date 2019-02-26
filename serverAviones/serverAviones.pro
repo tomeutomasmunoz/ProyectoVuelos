@@ -28,5 +28,6 @@ HEADERS += \
 
 RESOURCES += \
     conf.qrc
+    configuracion.txt
 
 DISTFILES +=
