@@ -14,7 +14,7 @@ class socket : public QObject
     Q_OBJECT
 
 public:
-    explicit socket(quint16 port, bool debug=false);
+    explicit socket();
     ~socket();
 
 signals:
@@ -24,7 +24,7 @@ private slots:
     void onNewConnection();
     void processTextMessage(QString message);
     void socketDisconnected();
-
+    QStringList leerConf(QString archivo);
 private:
     QWebSocketServer *m_pWebSocketServer;
     QList<QWebSocket *> m_clients;

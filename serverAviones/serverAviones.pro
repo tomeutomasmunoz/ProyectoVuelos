@@ -25,3 +25,8 @@ SOURCES += \
 HEADERS += \
     socket.h \
     conexionbbdd.h
+
+RESOURCES += \
+    conf.qrc
+
+DISTFILES +=
