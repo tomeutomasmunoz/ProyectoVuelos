@@ -1,12 +1,22 @@
-#include <QtCore/QCoreApplication>
+#include <QCoreApplication>
 #include <socket.h>
+#include <conexionbbdd.h>
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication app(argc, argv);
+     QCoreApplication a(argc, argv);
+
 
     socket *server = new socket();
-    QObject::connect(server, &socket::closed, &app, &QCoreApplication::quit);
+    QObject::connect(server, &socket::closed, &a, &QCoreApplication::quit);
+    ConexionBBDD b;
+    b.Conectar();
+    b.DevolverVuelos();
 
-    return app.exec();
+
+
+
+
+
+    return a.exec();
 }
