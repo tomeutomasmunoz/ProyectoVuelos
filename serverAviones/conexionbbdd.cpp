@@ -3,8 +3,9 @@
 #include <QtSql>
 #include <QUuid>
 #include <QSqlQuery>
-#include<qjsonarray.h>
-#include<qjsondocument.h>
+#include<QJsonArray>
+#include<QJsonDocument>
+#include<QJsonObject>
 
 
 ConexionBBDD::ConexionBBDD()
@@ -36,7 +37,7 @@ QString ConexionBBDD::DevolverVuelos()
 {
     QSqlQuery qu;
     qu.setForwardOnly(true);
-    if (!qu.exec("SELECT * FROM vuelos ORDER BY ID DESC LIMIT 1"))return QString();
+    if (!qu.exec("SELECT * FROM public.vuelos"))return QString();
 
       QJsonDocument  json;
       QJsonArray     recordsArray;
@@ -52,7 +53,10 @@ QString ConexionBBDD::DevolverVuelos()
       }
       json.setArray(recordsArray);
 
-      return json.toJson();
+      QString doc=json.toJson(QJsonDocument::Compact);
+
+
+      return doc;
     }
 
 
@@ -61,7 +65,9 @@ QString ConexionBBDD::DevolverVuelos()
 
 
 
-}
+
+
+
 
 
 

@@ -10,6 +10,7 @@ public:
     void Conectar();
     QString DevolverVuelos();
 
+
 };
 
 #endif // CONEXIONBBDD_H
