@@ -15,20 +15,6 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -306,78 +292,84 @@ ALTER TABLE ONLY public.vuelos ALTER COLUMN "idVuelo" SET DEFAULT nextval('publi
 -- Data for Name: companias; Type: TABLE DATA; Schema: public; Owner: usuario
 --
 
+INSERT INTO public.companias VALUES (1, 'IBERIA', 1, '40e6215d-b5c6-4896-987c-f30f3678f608');
 
 
 --
 -- Data for Name: destinos; Type: TABLE DATA; Schema: public; Owner: usuario
 --
 
+INSERT INTO public.destinos VALUES (1, 'DUBAI');
 
 
 --
 -- Data for Name: estados; Type: TABLE DATA; Schema: public; Owner: usuario
 --
 
+INSERT INTO public.estados VALUES (1, 'EMBARCANDO', '16:00:00', false);
 
 
 --
 -- Data for Name: estados_vuelos; Type: TABLE DATA; Schema: public; Owner: usuario
 --
 
+INSERT INTO public.estados_vuelos VALUES (1, 1);
 
 
 --
 -- Data for Name: puertas; Type: TABLE DATA; Schema: public; Owner: usuario
 --
 
+INSERT INTO public.puertas VALUES (1, 'B', 6);
 
 
 --
 -- Data for Name: vuelos; Type: TABLE DATA; Schema: public; Owner: usuario
 --
 
+INSERT INTO public.vuelos VALUES (1, 1, 1, 1, '13:00:00', 'SALIDA');
 
 
 --
 -- Name: companias_idCompania_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
-SELECT pg_catalog.setval('public."companias_idCompania_seq"', 1, false);
+SELECT pg_catalog.setval('public."companias_idCompania_seq"', 1, true);
 
 
 --
 -- Name: companias_nombreLogo_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
-SELECT pg_catalog.setval('public."companias_nombreLogo_seq"', 1, false);
+SELECT pg_catalog.setval('public."companias_nombreLogo_seq"', 1, true);
 
 
 --
 -- Name: destinos_idDestino_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
-SELECT pg_catalog.setval('public."destinos_idDestino_seq"', 1, false);
+SELECT pg_catalog.setval('public."destinos_idDestino_seq"', 1, true);
 
 
 --
 -- Name: estados_idEstado_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
-SELECT pg_catalog.setval('public."estados_idEstado_seq"', 1, false);
+SELECT pg_catalog.setval('public."estados_idEstado_seq"', 1, true);
 
 
 --
 -- Name: puertas_idPuerta_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
-SELECT pg_catalog.setval('public."puertas_idPuerta_seq"', 1, false);
+SELECT pg_catalog.setval('public."puertas_idPuerta_seq"', 1, true);
 
 
 --
 -- Name: vuelos_idVuelo_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
-SELECT pg_catalog.setval('public."vuelos_idVuelo_seq"', 1, false);
+SELECT pg_catalog.setval('public."vuelos_idVuelo_seq"', 1, true);
 
 
 --
