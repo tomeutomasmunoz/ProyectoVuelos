@@ -1,29 +1,25 @@
-#include <QtCore/QCoreApplication>
-#include <QtCore/QCommandLineParser>
-#include <QtCore/QCommandLineOption>
-#include "socket.h"
+#include <QCoreApplication>
+#include <socket.h>
+#include <conexionbbdd.h>
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
+     QCoreApplication a(argc, argv);
 
-    QCommandLineParser parser;
-    parser.setApplicationDescription("QtWebSockets example: echoserver");
-    parser.addHelpOption();
 
-    QCommandLineOption dbgOption(QStringList() << "d" << "debug",
-            QCoreApplication::translate("main", "Debug output [default: off]."));
-    parser.addOption(dbgOption);
-    QCommandLineOption portOption(QStringList() << "p" << "port",
-            QCoreApplication::translate("main", "Port for echoserver [default: 1234]."),
-            QCoreApplication::translate("main", "port"), QLatin1Literal("1234"));
-    parser.addOption(portOption);
-    parser.process(a);
-    bool debug = parser.isSet(dbgOption);
-    int port = parser.value(portOption).toInt();
-
-    socket *server = new socket(port, debug);
+    socket *server = new socket();
     QObject::connect(server, &socket::closed, &a, &QCoreApplication::quit);
+    ConexionBBDD b;
+    b.Conectar();
+    QString vuelo= b.DevolverVuelos();
+    qDebug() << vuelo;
+
+
+
+
+
+
 
     return a.exec();
 }

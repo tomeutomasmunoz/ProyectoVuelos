@@ -2,22 +2,29 @@
 #include "QtWebSockets/qwebsocketserver.h"
 #include "QtWebSockets/qwebsocket.h"
 #include <QtCore/QDebug>
+#include <iostream>
+#include <fstream>
+#include <QFile>
 
 
-socket::socket(quint16 port, bool debug) :
+
+
+socket::socket() :
     m_pWebSocketServer(new QWebSocketServer(QStringLiteral("Test Server"),
-                                            QWebSocketServer::NonSecureMode, this)),
-    m_debug(debug)
+                                            QWebSocketServer::NonSecureMode, this))
+
 
 {
-    if (m_pWebSocketServer->listen(QHostAddress::Any, port)) {
 
-            if (m_debug)
-                qDebug() << "Server iniciado en puerto" << port;
-            connect(m_pWebSocketServer, &QWebSocketServer::newConnection,
-                    this, &socket::onNewConnection);
-            connect(m_pWebSocketServer, &QWebSocketServer::closed, this, &socket::closed);
-        }
+
+    quint16 port=  leerConf(":\configuracion").toUShort();
+
+    if (m_pWebSocketServer->listen(QHostAddress::Any, port))
+    {
+        qDebug() << "Server iniciado en puerto:" << port;
+        connect(m_pWebSocketServer, &QWebSocketServer::newConnection, this, &socket::onNewConnection);
+        connect(m_pWebSocketServer, &QWebSocketServer::closed, this, &socket::closed);
+    } // end if
 }
 
 
@@ -27,14 +34,52 @@ socket::~socket()
     qDeleteAll(m_clients.begin(), m_clients.end());
 }
 
+QString socket::leerConf(QString archivo)
+{
+    QFile inputFile(archivo);
+
+    if(!inputFile.exists())
+    {
+    qDebug() << "no se ha encontrado el archivo";
+    }
+    else{
+
+
+    if (inputFile.open(QIODevice::ReadOnly))
+    {
+        QTextStream in(&inputFile);
+        while (!in.atEnd())
+        {
+         QString busqueda("port:");
+         QString line = in.readLine();
+
+         int pos = line.indexOf(busqueda);
+         if (line.contains(busqueda))
+         {
+             QString resto = line.mid ( pos + busqueda.length());
+             return resto;
+             inputFile.close();
+         }
+
+
+
+        }
+        QString defecto = "1234";
+
+        return defecto;
+        inputFile.close();
+
+    }
+    }
+}
+
+
 
 void socket::onNewConnection()
 {
     QWebSocket *pSocket = m_pWebSocketServer->nextPendingConnection();
 
     qDebug() << "Socket conectado:" << pSocket;
-
-
 
     connect(pSocket, &QWebSocket::textMessageReceived, this, &socket::processTextMessage);
     connect(pSocket, &QWebSocket::disconnected, this, &socket::socketDisconnected);
