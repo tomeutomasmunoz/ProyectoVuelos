@@ -29,16 +29,19 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     vuelo.cpp \
-    nuevo_vuelo.cpp
+    nuevo_vuelo.cpp \
+    listar_vuelos.cpp
 
 HEADERS += \
         mainwindow.h \
     vuelo.h \
-    nuevo_vuelo.h
+    nuevo_vuelo.h \
+    listar_vuelos.h
 
 FORMS += \
         mainwindow.ui \
-    nuevo_vuelo.ui
+    nuevo_vuelo.ui \
+    listar_vuelos.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

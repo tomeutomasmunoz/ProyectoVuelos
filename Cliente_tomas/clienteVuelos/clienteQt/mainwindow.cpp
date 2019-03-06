@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "nuevo_vuelo.h"
+#include "listar_vuelos.h"
 
 using namespace std;
 
@@ -60,4 +61,11 @@ void MainWindow::on_pushButton_3_clicked()
     Nuevo_Vuelo nv;
     nv.setModal(true);
     nv.exec();
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    Listar_Vuelos lv;
+    lv.setModal(true);
+    lv.exec();
 }
