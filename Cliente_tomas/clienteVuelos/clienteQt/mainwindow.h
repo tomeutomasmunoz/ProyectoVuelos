@@ -26,6 +26,8 @@ private:
 
 public slots:
 
+private slots:
+    void on_pushButton_3_clicked();
 };
 
 #endif // MAINWINDOW_H

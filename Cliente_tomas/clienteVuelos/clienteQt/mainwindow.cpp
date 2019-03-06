@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "nuevo_vuelo.h"
 
 using namespace std;
 
@@ -52,4 +53,11 @@ void MainWindow::Conectar(){
     // Cerrar
 
 
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    Nuevo_Vuelo nv;
+    nv.setModal(true);
+    nv.exec();
 }

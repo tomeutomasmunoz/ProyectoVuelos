@@ -28,14 +28,17 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    vuelo.cpp
+    vuelo.cpp \
+    nuevo_vuelo.cpp
 
 HEADERS += \
         mainwindow.h \
-    vuelo.h
+    vuelo.h \
+    nuevo_vuelo.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    nuevo_vuelo.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
