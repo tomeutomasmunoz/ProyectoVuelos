@@ -14,104 +14,116 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="lblNombreAeropuerto">
+   <widget class="QLabel" name="lblTitulo">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>190</x>
       <y>10</y>
-      <width>251</width>
+      <width>131</width>
       <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>Aeropuerto Palma de Mallorca - PMI</string>
+     <string>LLEGADAS - SALIDAS</string>
     </property>
-   </widget>
-   <widget class="QTableWidget" name="tableWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>501</width>
-      <height>351</height>
-     </rect>
-    </property>
-    <column>
-     <property name="text">
-      <string>Hora Llegada</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Comapñia</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Destino</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Puerta</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Observaciones</string>
-     </property>
-    </column>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>410</y>
-      <width>561</width>
-      <height>41</height>
+      <y>460</y>
+      <width>411</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
      <string>Preséntese al embarque a la hora indicada por su compañía aerea.</string>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget">
+   <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>100</y>
-      <width>501</width>
-      <height>311</height>
+      <y>40</y>
+      <width>491</width>
+      <height>401</height>
      </rect>
     </property>
-    <item>
-     <property name="text">
-      <string>freferf</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>frefref</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>frefrefre</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QPushButton" name="btnSalir">
-    <property name="geometry">
-     <rect>
-      <x>420</x>
-      <y>450</y>
-      <width>88</width>
-      <height>34</height>
-     </rect>
+    <property name="widgetResizable">
+     <bool>true</bool>
     </property>
-    <property name="text">
-     <string>Salir</string>
-    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>487</width>
+       <height>397</height>
+      </rect>
+     </property>
+     <widget class="QListWidget" name="listWidget">
+      <property name="geometry">
+       <rect>
+        <x>-10</x>
+        <y>30</y>
+        <width>501</width>
+        <height>371</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>freferf</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>frefref</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>frefrefre</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QTableWidget" name="myWidget">
+      <property name="geometry">
+       <rect>
+        <x>-10</x>
+        <y>0</y>
+        <width>501</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>Hora Llegada</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Comapñia</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Destino</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Puerta</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Observaciones</string>
+       </property>
+      </column>
+     </widget>
+     <zorder>myWidget</zorder>
+     <zorder>listWidget</zorder>
+    </widget>
    </widget>
   </widget>
  </widget>

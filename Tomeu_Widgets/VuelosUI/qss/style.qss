@@ -1,5 +1,5 @@
 QMainWindow{
-	background-color: black;
+        background-color: black;
 }
 
 bntSalir {
@@ -18,4 +18,19 @@ QPushButton {
  padding: 10px;
  margin: 10px;
  background-color: black;
+}
+
+QTableWidget {
+    background-color: black;
+    color: yellow;
+}
+
+QListWidget {
+    background-color: black;
+    color: yellow;
+}
+
+QLabel{
+    background-color: black;
+    color: yellow;
 }
