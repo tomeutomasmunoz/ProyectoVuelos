@@ -55,17 +55,3 @@ void MainWindow::Conectar(){
 
 
 }
-
-void MainWindow::on_pushButton_3_clicked()
-{
-    Nuevo_Vuelo nv;
-    nv.setModal(true);
-    nv.exec();
-}
-
-void MainWindow::on_pushButton_2_clicked()
-{
-    Listar_Vuelos lv;
-    lv.setModal(true);
-    lv.exec();
-}
