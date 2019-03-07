@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QMessageBox>
+#include <QTcpSocket>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -22,7 +24,7 @@ void MainWindow::Conectar(){
     socket = new QTcpSocket(this);
 
     // Poner IP y PUERTO
-    socket->connectToHost("google.com", 80);
+    socket->connectToHost("localhost", 3347);
 
     if(socket->waitForConnected(3000)){
         msgBox->setText("Conectado");
