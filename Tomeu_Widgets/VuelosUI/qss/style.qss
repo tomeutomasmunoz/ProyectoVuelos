@@ -1,23 +1,5 @@
 QMainWindow{
-        background-color: black;
-}
-
-bntSalir {
- border: 2px solid whitesmoke;
- border-radius: 5px;
- background-color: rgb(170, 170, 0);
- padding: 10px;
- margin: 10px;
-}
-
-
-QPushButton {
- border: 2px solid whitesmoke;
- border-radius: 5px;
- background-color: rgb(170, 170, 0);
- padding: 10px;
- margin: 10px;
- background-color: black;
+   background-color: black;
 }
 
 QTableWidget {
@@ -30,7 +12,14 @@ QListWidget {
     color: yellow;
 }
 
-QLabel{
+QLabel#lblTitulo {
     background-color: black;
     color: yellow;
+    font-size: 20px;
+}
+
+QLabel#lblEmbarque {
+    background-color: black;
+    color: yellow;
+    font-size: 14px;
 }
