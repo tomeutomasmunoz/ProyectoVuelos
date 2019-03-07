@@ -12,3 +12,42 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::Conectar(){
+
+    QMessageBox *msgBox = new QMessageBox(this);
+
+    // Iniciar WebSocket
+
+    socket = new QTcpSocket(this);
+
+    // Poner IP y PUERTO
+    socket->connectToHost("google.com", 80);
+
+    if(socket->waitForConnected(3000)){
+        msgBox->setText("Conectado");
+        msgBox->open();
+        socket->close();
+
+        // Enviar
+
+        /*socket->write("Esto es una prueba");
+        socket->waitForBytesWritten(1000);
+        socket->waitForReadyRead(3000);
+        msgBox->setText(socket->readAll());
+        socket->close();*/
+
+    } else {
+        msgBox->setText("No conectado");
+        msgBox->open();
+    }
+
+
+
+
+    // Recibir
+
+    // Cerrar
+
+
+}
